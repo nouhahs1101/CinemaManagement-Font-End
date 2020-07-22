@@ -1,0 +1,96 @@
+
+<mat-toolbar color="primary" class="mat-toolbar app-toolbar no-print mat-primary mat-toolbar-multiple-rows"   *ngIf="this.authService.isAuthenticated()">
+ 
+      <mat-toolbar-row class="mat-toolbar-row"  >
+     <!-- <div *ngIf="this.authService.isAdmin()"> -->
+      <div>
+
+        <button mat-button="" title="Docs menu" style="top: 1;" class="mat-focus-indicator hamburger mat-button mat-button-base"(click)="opened = !opened" >
+          <span class="mat-button-wrapper">
+            <mat-icon role="img" svgicon="menu" class="mat-icon notranslate mat-icon-no-color" aria-hidden="true">
+              <svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></mat-icon>
+              </span>
+              <div matripple="" class="mat-ripple mat-button-ripple">
+            
+              </div>
+              
+            </button>
+           
+            <a class="navbar-brand">
+              <img id="aeva" src="https://thumbs.dreamstime.com/z/calibre-abstrait-de-vecteur-de-logo-de-cin%C3%A9ma-d-isolement-sur-le-blanc-79853753.jpg">
+            </a>  
+           
+      </div>
+       <!-- <li class="nav-item" > 
+         <a class="navbar-link" style="top: 7px; color: darksalmon;    font-family: unset; 
+         top: 60px;">Bienvenue {{this.authService.getUsername()}}</a>
+      </li> -->
+   
+          <li class="nav-item " style="background-color: ghostwhite;;">
+            <a  routerLink="login"class="nav-link" href="#" (click)="logout()" style="font-size: small; "  style="color: white;">
+                <mat-icon class="icon">input</mat-icon>
+              <span class="label" style="color: white;" ><strong>Déconnection</strong></span> 
+            </a>
+          </li>
+        
+          
+       
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+ 
+<mat-sidenav-container style="top: 70px;       "  >
+  <mat-sidenav-container class="main-sidenav-container"id="sidebar" class="sidebar" style="top: 100px;" [ngClass]="{'sidebar-bg' : hasBackgroundImage()}"(backdropClick)="opened = !opened" *ngIf="this.authService.isAdmin()" >
+    <mat-sidenav style="top: 40px" class="ee" [mode]="mode"
+             [opened]="opened"
+             [fixedInViewport]="true"
+             [fixedTopGap]="layoutGap">
+            
+   
+     <div class="sidebar-content" style="    background-color: darkred;">
+       <perfect-scrollbar>
+       
+   
+       
+         <div class="sidebar-menu" >
+           <ul>
+             <li *ngFor="let menu of menus" [ngClass]="{'active': menu.active , 'sidebar-dropdown':menu.type === 'dropdown' , 'header-menu':menu.type === 'header'}">
+               <span *ngIf="menu.type === 'header'">{{menu.title}}</span>
+               <a (click)='toggle(menu)' routerLink="{{menu.link}}">
+                
+                  <mat-icon class="icon">{{menu.icon}}</mat-icon>
+               
+                 <span >{{menu.title}}</span>
+               
+                 
+               </a>
+               <div  *ngIf="menu.type === 'dropdown'" class="sidebar-submenu" [@slide]="getState(menu)"> 
+                 <ul>
+                   <li *ngFor="let submenu of menu.submenus">
+                       
+  
+                     <a routerLink="{{submenu.linkk}}" (click)='getCinema(submenu.title)'> 
+                       <mat-icon class="icon">{{submenu.icon}}</mat-icon>
+                       <span>
+                          {{submenu.title}}
+                       </span>
+                     </a>
+                   
+                   </li>
+                 </ul>
+               </div>
+
+             </li>
+           </ul>
+         </div>
+     
+      </perfect-scrollbar>
+      </div>
+   </mat-sidenav>
+   </mat-sidenav-container> 
+
+  
+
+
+  <router-outlet></router-outlet>

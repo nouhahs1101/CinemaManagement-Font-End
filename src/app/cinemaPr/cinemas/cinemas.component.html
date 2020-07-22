@@ -1,0 +1,62 @@
+
+<br>
+
+<div  style="width: 1000px;margin: auto; " >
+  <ul>
+    <th> <p style="    font-size: 22px;">  <strong>Liste des cinémas</strong> </p></th>
+    <th style="padding-left: 202px;"> <div class="blocks">
+     
+      </div>
+    </th>
+  </ul>
+   
+        <mat-table #table [dataSource]="dataSource"  matSort >
+  
+  
+  
+            <ng-container matColumnDef="nom">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header style="    font-size: 22px;">  <strong>Nom</strong></mat-header-cell>
+            <mat-cell *matCellDef="let element let i"  [style.color]="c"> {{element.name}} </mat-cell>
+            </ng-container>
+          
+            
+            <ng-container matColumnDef="longitude">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;"> <strong>Longitude</strong>   </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.longitude}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="latitude">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;">  <strong>Latitude</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.latitude}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="altitude" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;">  <strong>Altitude</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.altitude}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="nombreSalles">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 18px;">   <strong>Nombre de salles</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.nombreSalles}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ville">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;">  <strong>Ville</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.ville.name}}
+            </mat-cell>
+          </ng-container>
+         
+        
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;"> <strong>Actions</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+       
+            
+                <a (click)="delete(element.id)" type="button">
+                <mat-icon class="icon" style="color:teal">delete</mat-icon>
+                </a>
+            </mat-cell>
+            </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>

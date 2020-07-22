@@ -1,0 +1,40 @@
+
+<div mat-dialog-content *ngIf="this.authService.isAuthenticated()">
+  <form class="example-form" (ngSubmit)="onSubmit()"  [formGroup]="data" style="height: 314px;" >
+
+
+    <mat-form-field   style="margin-left: 64px;"> 
+      <input matInput placeholder="nom" required   formControlName="name" name="name" type="text">
+</mat-form-field>
+        
+          <mat-form-field style="margin-left: 64px;">
+            <input matInput placeholder="longitude" required  formControlName="longitude" name="longitude" type="text">
+      </mat-form-field>
+      <mat-form-field style="margin-left: 64px;">
+        <input matInput placeholder="latitude"  required  formControlName="latitude" name="latitude" type="text">
+  </mat-form-field>
+  <mat-form-field style="margin-left: 64px;">
+    <input matInput placeholder="altitude" required  formControlName="altitude" name="altitude" type="text">
+</mat-form-field>
+<mat-form-field style="margin-left: 64px;">
+  <input matInput placeholder="Nombre de salles" required  formControlName="nombreSalles" name="nombreSalles" type="text">
+</mat-form-field>
+
+
+<mat-form-field  style="margin-left: 64px;">
+<mat-select matInput placeholder="ville" required  formControlName="ville" name="ville">
+    <mat-option *ngFor="let ville of cities" [value]="ville">
+      {{ ville }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+  
+<div mat-dialog-actions  style="margin-left: 64px;" >
+  <button mat-raised-button type="submit"   style="background-color: brown; color: white;">Save</button>
+  <button mat-raised-button class="close" (click)="onNoClick()" style="color: brown;"  >Cancel</button>
+</div> 
+  </form>
+
+</div>
+
+

@@ -1,0 +1,50 @@
+
+<br>
+
+<div  style="width: 1000px;margin: auto; " >
+  <ul>
+    <th> <p  style=" font-size: 22px;">  <strong>Liste des salles</strong> </p></th>
+    <th style="padding-left: 202px;"> <div class="blocks">
+      <button button="submit" mat-raised-button  (click)="openDialog()"  style="    background-color: teal; color: white;" >
+      <mat-icon>add</mat-icon>  <strong> Ajouter une salle</strong></button>
+      </div>
+    </th>
+  </ul>
+   
+        <mat-table #table [dataSource]="dataSource"  matSort >
+  
+  
+  
+            <ng-container matColumnDef="nom">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header style="    font-size: 22px;" >  <strong>Nom</strong></mat-header-cell>
+            <mat-cell *matCellDef="let element let i"  [style.color]="c"> {{element.name}} </mat-cell>
+            </ng-container>
+          
+            
+            <ng-container matColumnDef="Nombre de places">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;"> <strong>Nombre de places</strong>   </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.nombrePlace}}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Cinema">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;">  <strong>Cinema</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element let i"> {{element.cinema.name}}
+            </mat-cell>
+          </ng-container>
+         
+        
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="    font-size: 22px;" > <strong>Actions</strong> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+       
+              <a (click)="validerPost(element.id)" type="button">
+                <mat-icon class="icon" style="color:teal;">update</mat-icon>
+              </a>
+                <a (click)="deleteCinema(element.id)" type="button">
+                <mat-icon class="icon" style="color:teal;">delete</mat-icon>
+                </a>
+            </mat-cell>
+            </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>

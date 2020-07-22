@@ -1,0 +1,51 @@
+<br>
+<br>
+
+<div  style="width: 1000px;margin: auto; " *ngIf="this.authService.isAuthenticated()">
+  <ul>
+    <th> <p style="font-size: larger;">  <strong>Liste des Cinemas</strong> </p></th>
+    <th style="padding-left: 202px;"> <div class="blocks">
+      <button button="submit" mat-raised-button  (click)="openDialog()"  style="    background-color: darkslategrey; color: white;  " >
+      <mat-icon>add</mat-icon> Ajouter une cinema</button>
+      </div>
+    </th>
+  </ul>
+   
+   
+<div style="width: 1000px; margin: auto;background:maroon;height: 46px;" >
+   
+    <th *ngFor="let cinema of cinemas"> 
+   <button mat-button   (click)="getSalles(cinema)" style="color: white; top: -8px;    font-size: 18px;">{{cinema}}</button>
+  </th>
+  </div>
+<br>
+
+
+  <div class="row" >
+    <div *ngFor="let salle of salles">
+      <div class="col-sm-12">
+        <div class="panel panel-default " style="width: max-content;">
+            <mat-card class="example-card mat-elevation-z8">
+                <mat-card-header >
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{salle.name}}</mat-card-title>
+                  <mat-card-subtitle><strong>Nombre de places {{salle.nombrePlace}}</strong></mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{salle.image}}" style="height: 300px;" >
+               <p><strong>Séances</strong></p>
+                <mat-card-content>
+                    <div *ngFor="let p of salle.projections">
+                  <p> <strong>Prix: {{p.prix}}DH      -------------->     Heure :{{ p.dateProjection | date: 'shortTime' }}</strong>  </p>
+                 
+                   
+                    </div>
+                </mat-card-content>
+              
+              </mat-card>
+        </div>
+      </div>
+    </div>
+</div>
+  
+  
+</div>
